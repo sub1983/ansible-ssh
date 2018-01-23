@@ -1,0 +1,11 @@
+Host 172.*.*.*
+
+  ProxyCommand ssh -q -W %h:%p ec2-user@52.90.84.142
+  User ec2-user
+  IdentityFile /Users/Subin/Downloads/sshdnkey.pem
+
+Host 52.90.84.142
+  User ec2-user
+  IdentityFile /Users/Subin/Downloads/sshdnkey.pem
+  ForwardAgent yes
+  
