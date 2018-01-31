@@ -1,0 +1,7 @@
+---
+- name: AWS Deploy
+  hosts: vpc_id_vpc_0417127c
+  become: true
+  roles:
+    - sshkey
+    

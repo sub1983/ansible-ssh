@@ -1,0 +1,8 @@
+- name: "Install softwares"
+  yum: pkg={{ item }} state=present
+  with_items:
+  - dnsutils
+  - git
+  - python-minimal
+  - ntp
+

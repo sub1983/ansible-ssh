@@ -1,0 +1,25 @@
+---    
+
+- name: group sudoers
+  group:
+     name: admin
+     state: present
+
+- name: Allow sudo acess to group 'admin'
+  lineinfile:
+     dest: /etc/sudoers
+     state: present
+     regexp: '^%admin'
+     line: '%admin ALL=(ALL) NOPASSWD: ALL'
+     validate: visudo -cf %s
+
+- name: Add sudoers users to 'admin' group
+  user:
+        name: aws
+        state: present
+        groups: admin
+        append: yes
+
+- name: setup authorized key
+  authorized_key: user=subin key="{{ lookup('file','subin.pub') }}"
+  authorized_key: user=aws key="{{ lookup('file','aws.pub') }}"
